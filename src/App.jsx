@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 // Supports weights 200-900
 import '@fontsource-variable/nunito';
+import Header from './components/Header';
 
 
 // set api endpoint
@@ -17,8 +18,6 @@ function App() {
     fetchData(api_blog)
   }, [])
 
-
-
   /**
    * Fetches data from the specified URL and updates the state with the retrieved data.
    *
@@ -34,7 +33,6 @@ function App() {
 
         setPosts(data)
       })
-
   }
 
   /**
@@ -62,26 +60,7 @@ function App() {
     <>
 
       {/* Header */}
-      <header>
-        <nav className="navbar bg-dark text-white">
-          <div className="container">
-            <div className="logo">My<b>Blog</b></div>
-
-            <ul className="nav">
-              <li className="nav-item">
-                <a href="" className="nav-link">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="" className="nav-link">
-                  Contacts
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
+      <Header />
 
       {/* Main */}
       <main>

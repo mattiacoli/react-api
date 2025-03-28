@@ -37,6 +37,19 @@ function App() {
 
   }
 
+  function deletePost(slug) {
+    fetch('http://localhost:3000/posts/' + slug, { method: 'DELETE' })
+      .then(res => {
+
+        const filteredPosts = posts.filter(post => post.slug !== slug)
+
+        setPosts(filteredPosts);
+
+      })
+      .catch(error => console.error('Error:', error));
+  }
+
+
   // markup
   return (
     <>
@@ -86,7 +99,7 @@ function App() {
                     <td>{post.title}</td>
                     <td><img src={base_url + post.image} alt={post.title} /></td>
                     <td>
-                      <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                      <button type="button" className="btn btn-danger" onClick={() => deletePost(post.slug)}><i className="fa fa-trash" aria-hidden="true"></i></button>
                     </td>
                   </tr>
                 ))}

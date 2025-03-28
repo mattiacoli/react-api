@@ -2,31 +2,45 @@ import { useState, useEffect } from 'react'
 // Supports weights 200-900
 import '@fontsource-variable/nunito';
 
-const api_blog = "http://localhost:3000"
-const post_endpoint = "/posts"
 
-
+// set api endpoint
+const api_blog = "http://localhost:3000/posts"
 
 
 function App() {
-
+  // create useState for the array of post
   const [posts, setPosts] = useState([])
 
+  // add use effect for Ajax call at the load of the page
+  useEffect(() => {
+    fetchData(api_blog)
+  }, [])
+
+
+
+  /**
+   * Fetches data from the specified URL and updates the state with the retrieved data.
+   *
+   * @param {string} url - The URL to fetch data from.
+   * @returns {void}
+   */
   function fetchData(url) {
 
     fetch(url)
       .then(res => res.json())
       .then(data => {
         console.log(data);
+
+        setPosts(data)
       })
 
   }
 
-
-
-
+  // markup
   return (
     <>
+
+      {/* Header */}
       <header>
         <nav className="navbar bg-dark text-white">
           <div className="container">
@@ -48,9 +62,11 @@ function App() {
         </nav>
       </header>
 
+      {/* Main */}
       <main>
         <section>
           <div className="container">
+            {/* table structure */}
             <table className="table table-striped table-inverse table-responsive">
               <thead className="thead-inverse">
                 <tr>
@@ -59,18 +75,20 @@ function App() {
                   <th>Actions</th>
                 </tr>
               </thead>
+
+              {/* table content */}
               <tbody>
-                {/*                 <tr>
-                  <td scope="row"></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row"></td>
-                  <td></td>
-                  <td></td>
-                </tr> */}
+                {posts.map(post => (
+                  <tr key={post.id}>
+                    <td scope="row">{post.id}</td>
+                    <td>{post.title}</td>
+                    <td>
+                      <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
+
             </table>
 
           </div>

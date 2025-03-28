@@ -5,6 +5,7 @@ import '@fontsource-variable/nunito';
 
 // set api endpoint
 const api_blog = "http://localhost:3000/posts"
+const base_url = "http://localhost:3000"
 
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
                 <tr>
                   <th>ID</th>
                   <th>Title</th>
+                  <th>Thumb</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -82,6 +84,7 @@ function App() {
                   <tr key={post.id}>
                     <td scope="row">{post.id}</td>
                     <td>{post.title}</td>
+                    <td><img src={base_url + post.image} alt={post.title} /></td>
                     <td>
                       <button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                     </td>

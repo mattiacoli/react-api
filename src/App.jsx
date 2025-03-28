@@ -37,14 +37,21 @@ function App() {
 
   }
 
+  /**
+   * Deletes a post by its slug and updates the state to remove the deleted post.
+   *
+   * @param {string} slug - The unique identifier for the post to be deleted.
+   * @returns {void} This function does not return a value.
+   *
+   * @example
+   * deletePost('example-slug');
+   *
+   * @throws Will log an error to the console if the fetch request fails.
+   */
   function deletePost(slug) {
     fetch('http://localhost:3000/posts/' + slug, { method: 'DELETE' })
       .then(res => {
-
-        const filteredPosts = posts.filter(post => post.slug !== slug)
-
-        setPosts(filteredPosts);
-
+        fetchData(api_blog)
       })
       .catch(error => console.error('Error:', error));
   }

@@ -55,7 +55,6 @@ function App() {
       .catch(error => console.error('Error:', error));
   }
 
-
   // markup
   return (
     <>
@@ -64,7 +63,7 @@ function App() {
       <Header />
 
       {/* Main */}
-      <Main posts={posts} deletePost={deletePost} base_url={base_url} />
+      <Main posts={posts} deletePost={deletePost} base_url={base_url} fetchData={fetchData} api_blog={api_blog} />
 
 
     </>
